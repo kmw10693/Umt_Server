@@ -3,9 +3,7 @@ package com.umt.umt_server.controllers;
 import com.umt.umt_server.errors.CustomException;
 import com.umt.umt_server.errors.ErrorResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
