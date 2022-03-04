@@ -8,12 +8,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-import javax.validation.constraints.NotBlank;
-
 /**
  * DTO는 계층간 데이터 교환을 위한 객체
  * DB의 데이터를 Service나 Controller 등으로 보낼 때 사용하는 객체 입니다.
  */
+
 @Builder
 @Getter
 @AllArgsConstructor
@@ -23,6 +22,6 @@ public class UserResultData {
     @ApiModelProperty(value = "사용자 인덱스", example = "김민우")
     private String id;
 
-    @ApiParam(value = "사용자 이름", example = "김민우")
+    @ApiModelProperty(value = "사용자 이름", example = "김민우")
     private String name;
 }
