@@ -34,7 +34,7 @@ public class TreasureController {
     @GetMapping("/treasures")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "보물 목록 검색", notes = "보물 목록 상세 정보를 조회합니다. (반경 2KM 내)")
-    public List<TreasureListRes> getLists(@RequestParam @ApiParam(value = "경도 값") double longitude, @RequestParam @ApiParam(value = "위도 값") double latitude) {
+    public TreasureRes getLists(@RequestParam @ApiParam(value = "경도 값") double longitude, @RequestParam @ApiParam(value = "위도 값") double latitude) {
         return treasureService.getLists(latitude, longitude);
     }
 

@@ -89,7 +89,7 @@ public class TreasureService {
                 .build();
     }
 
-    public List<TreasureListRes> getLists(double latitude, double longitude) {
+    public TreasureRes getLists(double latitude, double longitude) {
 
         List<Treasure> treasures = treasureRepository.getTreasures(longitude, latitude);
         List<TreasureListRes> treasureListRes = new ArrayList<>();
@@ -111,7 +111,9 @@ public class TreasureService {
 
         }
 
-        return treasureListRes;
+        TreasureRes treasureRes = new TreasureRes(treasureListRes);
+        return treasureRes;
+
     }
 
     public void createReaction(ReactionReq reactionReq) {
