@@ -7,6 +7,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -20,11 +21,8 @@ import javax.persistence.Id;
 @ApiModel("사용자 정보")
 public class User extends BaseTimeEntity {
     @Id
-    @GeneratedValue
-    @ApiModelProperty(value = "사용자 인덱스", example = "1")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(value = "사용자 idx", example = "1")
     private Long id;
 
-    @ApiModelProperty(value = "사용자 이름", required = true, example = "김민우")
-    @Builder.Default
-    private String name = "";
 }
