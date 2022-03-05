@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +33,7 @@ public class TreasureService {
 
     public TreasureCreateRes createTreasure(TreasureCreateReq treasureRegistrationData) {
 
-        Optional<User> user = userRepository.findById(1L);
+        Optional<User> user = userRepository.findById(treasureRegistrationData.getUserId());
 
         Treasure treasure = treasureRepository.save(
                 Treasure.builder()
@@ -67,9 +68,15 @@ public class TreasureService {
                 .build();
     }
 
-    public TreasureDetailRes getTreasure(Long treasureId) {
+    public TreasureDetailRes getQuest(Long treasureId) {
+
         Optional<Treasure> treasure = treasureRepository.findById(treasureId);
         Optional<Quest> quest = questRepository.findByTreasure(treasure);
+
+        // 좋아요 가져오기
+        Long like = treasureReactionRepository.countByTreasureAndReactionType(treasure, "like");
+        // 싫어요 가져오기
+        Long dislike = treasureReactionRepository.countByTreasureAndReactionType(treasure, "hate");
 
         return TreasureDetailRes.builder()
                 .treasureId(treasure.get().getId())
@@ -78,14 +85,10 @@ public class TreasureService {
                 .answer1(quest.get().getAnswer1())
                 .answer2(quest.get().getAnswer2())
                 .answer3(quest.get().getAnswer3())
-                .answerIndex(quest.get().getAnswerIndex())
                 .hashTag(treasure.get().getHashTag())
-                .hasQuest(treasure.get().getHasQuest())
-                .latitude(treasure.get().getLatitude())
-                .longitude(treasure.get().getLongitude())
-                .photoUrl(treasure.get().getPhotoUrl())
                 .question(quest.get().getQuestion())
-                .text(treasure.get().getText())
+                .likeCnt(like)
+                .dislikeCnt(dislike)
                 .build();
     }
 
@@ -97,11 +100,16 @@ public class TreasureService {
         for (Treasure treasure : treasures) {
             double distance = distance(treasure.getLatitude(), treasure.getLongitude(), latitude, longitude);
 
+            // 좋아요 가져오기
+            Long like = treasureReactionRepository.countByTreasureAndReactionType(treasure, "like");
+            // 싫어요 가져오기
+            Long dislike = treasureReactionRepository.countByTreasureAndReactionType(treasure, "hate");
+
             treasureListRes.add(
                     TreasureListRes.builder()
                             .treasureId(treasure.getId())
-                            .likeCnt(10)
-                            .dislikeCnt(3)
+                            .likeCnt(like)
+                            .dislikeCnt(dislike)
                             .latitude(treasure.getLatitude())
                             .longitude(treasure.getLongitude())
                             .distance(distance)
@@ -111,6 +119,7 @@ public class TreasureService {
 
         }
 
+        treasureListRes.sort(Comparator.naturalOrder());
         TreasureRes treasureRes = new TreasureRes(treasureListRes);
         return treasureRes;
 

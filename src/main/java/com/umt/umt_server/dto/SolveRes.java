@@ -22,10 +22,10 @@ public class SolveRes {
     private String hashTag;
 
     @ApiModelProperty(value = "좋아요 수", example = "15")
-    private Integer likeCnt;
+    private Long likeCnt;
 
     @ApiModelProperty(value = "싫어요 수", example = "3")
-    private Integer dislikeCnt;
+    private Long dislikeCnt;
 
     @ApiModelProperty(value = "보물 설명", example = "소중한 보물")
     private String text;

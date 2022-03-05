@@ -12,6 +12,8 @@ import lombok.Getter;
 @ApiModel("보물 등록 요청 정보")
 public class TreasureCreateReq {
 
+    @ApiModelProperty(value = "유저 인덱스", required = true, example = "1")
+    private Long userId;
 
     @ApiModelProperty(value = "위도", required = true, example = "image.com")
     private double latitude;

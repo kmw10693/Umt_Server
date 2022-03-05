@@ -24,11 +24,11 @@ public class TreasureController {
         return treasureService.createTreasure(treasureRegistrationData);
     }
 
-    @GetMapping("/treasure/{treasureId}")
+    @GetMapping("/quest")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "보물&퀘스트 상세 조회", notes = "보물과 퀘스트를 상세 조회합니다.")
-    public TreasureDetailRes getTreasure(@PathVariable @ApiParam(value = "보물 식별자 값")  Long treasureId) {
-        return treasureService.getTreasure(treasureId);
+    @ApiOperation(value = "퀘스트 조회", notes = "퀘스트를 조회합니다.")
+    public TreasureDetailRes getQuest(@RequestParam @ApiParam(value = "보물 식별자 값")  Long treasureId) {
+        return treasureService.getQuest(treasureId);
     }
 
     @GetMapping("/treasures")

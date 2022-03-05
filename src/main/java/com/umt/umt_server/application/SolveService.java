@@ -9,10 +9,7 @@ import com.umt.umt_server.dto.SolveReq;
 import com.umt.umt_server.dto.SolveRes;
 import com.umt.umt_server.errors.CustomException;
 import com.umt.umt_server.errors.ErrorCode;
-import com.umt.umt_server.infra.QuestRepository;
-import com.umt.umt_server.infra.SolveRepository;
-import com.umt.umt_server.infra.TreasureRepository;
-import com.umt.umt_server.infra.UserRepository;
+import com.umt.umt_server.infra.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,11 +23,13 @@ public class SolveService {
     private final SolveRepository solveRepository;
     private final QuestRepository questRepository;
     private final TreasureRepository treasureRepository;
+    private final TreasureReactionRepository treasureReactionRepository;
     private final UserRepository userRepository;
 
     public SolveRes createSolve(SolveReq solveReq) {
         Optional<Treasure> treasure = treasureRepository.findById(solveReq.getTreasureId());
         Optional<Quest> quest = questRepository.findByTreasure(treasure);
+
 
         User user = userRepository.getById(solveReq.getUserId());
 
@@ -44,12 +43,16 @@ public class SolveService {
                         .quest(quest.get())
                         .build()
         );
+        // 좋아요 가져오기
+        Long like = treasureReactionRepository.countByTreasureAndReactionType(treasure, "like");
+        // 싫어요 가져오기
+        Long dislike = treasureReactionRepository.countByTreasureAndReactionType(treasure, "hate");
 
         return SolveRes.builder()
                 .treasureId(treasure.get().getId())
                 .photoUrl(treasure.get().getPhotoUrl())
-                .likeCnt(15)
-                .dislikeCnt(3)
+                .likeCnt(like)
+                .dislikeCnt(dislike)
                 .hashTag(treasure.get().getHashTag())
                 .text(treasure.get().getText())
                 .build();
