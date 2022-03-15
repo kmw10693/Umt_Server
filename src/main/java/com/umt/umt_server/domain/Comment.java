@@ -30,6 +30,8 @@ public class Comment extends BaseTimeEntity {
     public CommentRes toCommentRes() {
         return CommentRes.builder()
                 .commentId(id)
+                .userId(user.getId())
+                .nickname(user.getNickname())
                 .content(content)
                 .createAt(getCreateAt())
                 .updateAt(getUpdateAt())

@@ -1,5 +1,6 @@
 package com.umt.umt_server.dto.Solve;
 
+import com.umt.umt_server.dto.Comment.CommentRes;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,8 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @Getter
@@ -43,5 +46,8 @@ public class SolveRes {
 
     @ApiModelProperty(value = "싫어요 수", example = "3")
     private Long dislikeCnt;
+
+    @Builder.Default
+    private List<CommentRes> comments = new ArrayList<>();
 
 }

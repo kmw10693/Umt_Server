@@ -1,9 +1,6 @@
 package com.umt.umt_server.application;
 
-import com.umt.umt_server.domain.Quest;
-import com.umt.umt_server.domain.Solve;
-import com.umt.umt_server.domain.Treasure;
-import com.umt.umt_server.domain.User;
+import com.umt.umt_server.domain.*;
 import com.umt.umt_server.dto.Solve.SolveReq;
 import com.umt.umt_server.dto.Solve.SolveRes;
 import com.umt.umt_server.errors.CustomException;
@@ -14,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -58,6 +56,8 @@ public class SolveService {
                 .text(treasure.get().getText())
                 .likeCnt(like)
                 .dislikeCnt(dislike)
+                .comments(treasure.get().getComments().
+                        stream().map(Comment::toCommentRes).collect(Collectors.toList()))
                 .build();
     }
 }

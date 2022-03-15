@@ -4,6 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
@@ -30,5 +33,9 @@ public class Treasure extends BaseTimeEntity{
     private String hashTag;
 
     private Boolean hasQuest;
+
+    @OneToMany(mappedBy = "treasure")
+    @Builder.Default
+    private List<Comment> comments = new ArrayList<>();
 
 }
