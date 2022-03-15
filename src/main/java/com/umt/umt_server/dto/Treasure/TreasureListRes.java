@@ -1,8 +1,7 @@
-package com.umt.umt_server.dto;
+package com.umt.umt_server.dto.Treasure;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.models.auth.In;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,17 +21,20 @@ public class TreasureListRes implements Comparable<TreasureListRes>{
     @ApiModelProperty(value = "싫어요 개수", example = "1")
     private Long dislikeCnt;
 
-    @ApiModelProperty(value = "위도", required = true, example = "32.23")
+    @ApiModelProperty(value = "위도", example = "32.23")
     private double latitude;
 
-    @ApiModelProperty(value = "경도", required = true, example = "38.75")
+    @ApiModelProperty(value = "경도", example = "38.75")
     private double longitude;
 
-    @ApiModelProperty(value = "거리", required = true, example = "2.0")
+    @ApiModelProperty(value = "거리", example = "2.0")
     private double distance;
 
-    @ApiModelProperty(value = "해시태그", required = true, example = "#가나다 #라바사")
+    @ApiModelProperty(value = "해시태그", example = "#가나다 #라바사")
     private String hashTag;
+
+    @ApiModelProperty(value = "포인트", example = "50")
+    private Integer point;
 
     @Override
     public int compareTo(TreasureListRes treasureListRes) {

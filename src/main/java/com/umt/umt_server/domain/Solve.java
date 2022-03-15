@@ -1,6 +1,5 @@
 package com.umt.umt_server.domain;
 
-import io.swagger.annotations.ApiModel;
 import lombok.*;
 
 import javax.persistence.*;

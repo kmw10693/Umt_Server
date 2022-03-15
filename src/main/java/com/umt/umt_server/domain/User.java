@@ -25,4 +25,10 @@ public class User extends BaseTimeEntity {
     @ApiModelProperty(value = "사용자 idx", example = "1")
     private Long id;
 
+    @ApiModelProperty(value = "사용자 닉네임", example = "닉스")
+    private String nickname;
+
+    @ApiModelProperty(value = "프로필 사진", example = "image.com")
+    private String imageUrl;
+
 }

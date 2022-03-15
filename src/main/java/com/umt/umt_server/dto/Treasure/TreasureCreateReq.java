@@ -1,4 +1,4 @@
-package com.umt.umt_server.dto;
+package com.umt.umt_server.dto.Treasure;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -49,6 +49,6 @@ public class TreasureCreateReq {
     private String answer3;
 
     @ApiModelProperty(value = "정답 index", example = "0")
-    private Integer answerIndex;
+    private Integer answerId;
 
 }

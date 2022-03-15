@@ -1,4 +1,4 @@
-package com.umt.umt_server.dto;
+package com.umt.umt_server.dto.Treasure;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

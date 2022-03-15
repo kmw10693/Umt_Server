@@ -1,8 +1,8 @@
 package com.umt.umt_server.controllers;
 
 import com.umt.umt_server.application.SolveService;
-import com.umt.umt_server.dto.SolveReq;
-import com.umt.umt_server.dto.SolveRes;
+import com.umt.umt_server.dto.Solve.SolveReq;
+import com.umt.umt_server.dto.Solve.SolveRes;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

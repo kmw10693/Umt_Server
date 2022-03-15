@@ -4,7 +4,12 @@ import com.umt.umt_server.domain.Quest;
 import com.umt.umt_server.domain.Treasure;
 import com.umt.umt_server.domain.TreasureReaction;
 import com.umt.umt_server.domain.User;
-import com.umt.umt_server.dto.*;
+import com.umt.umt_server.dto.Quest.QuestRes;
+import com.umt.umt_server.dto.Reaction.ReactionReq;
+import com.umt.umt_server.dto.Treasure.TreasureCreateReq;
+import com.umt.umt_server.dto.Treasure.TreasureCreateRes;
+import com.umt.umt_server.dto.Treasure.TreasureListRes;
+import com.umt.umt_server.dto.Treasure.TreasureRes;
 import com.umt.umt_server.errors.CustomException;
 import com.umt.umt_server.errors.ErrorCode;
 import com.umt.umt_server.infra.QuestRepository;
@@ -57,7 +62,7 @@ public class TreasureService {
                     .answer1(treasureRegistrationData.getAnswer1())
                     .answer2(treasureRegistrationData.getAnswer2())
                     .answer3(treasureRegistrationData.getAnswer3())
-                    .answerIndex(treasureRegistrationData.getAnswerIndex())
+                    .answerIndex(treasureRegistrationData.getAnswerId())
                     .build());
             questId = quest.getId();
         }
@@ -68,17 +73,15 @@ public class TreasureService {
                 .build();
     }
 
-    public TreasureDetailRes getQuest(Long treasureId) {
+    public QuestRes getQuest(Long treasureId) {
 
         Optional<Treasure> treasure = treasureRepository.findById(treasureId);
         Optional<Quest> quest = questRepository.findByTreasure(treasure);
 
-        // 좋아요 가져오기
         Long like = treasureReactionRepository.countByTreasureAndReactionType(treasure, "like");
-        // 싫어요 가져오기
         Long dislike = treasureReactionRepository.countByTreasureAndReactionType(treasure, "hate");
 
-        return TreasureDetailRes.builder()
+        return QuestRes.builder()
                 .treasureId(treasure.get().getId())
                 .questId(quest.get().getId())
                 .answer0(quest.get().getAnswer0())
@@ -100,9 +103,7 @@ public class TreasureService {
         for (Treasure treasure : treasures) {
             double distance = distance(treasure.getLatitude(), treasure.getLongitude(), latitude, longitude);
 
-            // 좋아요 가져오기
             Long like = treasureReactionRepository.countByTreasureAndReactionType(treasure, "like");
-            // 싫어요 가져오기
             Long dislike = treasureReactionRepository.countByTreasureAndReactionType(treasure, "hate");
 
             treasureListRes.add(
@@ -114,6 +115,7 @@ public class TreasureService {
                             .longitude(treasure.getLongitude())
                             .distance(distance)
                             .hashTag(treasure.getHashTag())
+                            .point(50)
                             .build()
             );
 
@@ -122,7 +124,6 @@ public class TreasureService {
         treasureListRes.sort(Comparator.naturalOrder());
         TreasureRes treasureRes = new TreasureRes(treasureListRes);
         return treasureRes;
-
     }
 
     public void createReaction(ReactionReq reactionReq) {
