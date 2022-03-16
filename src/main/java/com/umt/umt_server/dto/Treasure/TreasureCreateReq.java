@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 @Builder
 @Getter
 @AllArgsConstructor
@@ -16,18 +19,23 @@ public class TreasureCreateReq {
     private Long userId;
 
     @ApiModelProperty(value = "위도", required = true, example = "image.com")
+    @NotNull(message = "위도를 입력해주세요.")
     private double latitude;
 
     @ApiModelProperty(value = "경도", required = true, example = "image.com")
+    @NotNull(message = "경도를 입력해주세요.")
     private double longitude;
 
     @ApiModelProperty(value = "사진", required = true, example = "image.com")
+    @NotBlank(message = "사진을 넣어주세요.")
     private String photoUrl;
 
     @ApiModelProperty(value = "해시태그", required = true, example = "#가나다 #라바사")
+    @NotBlank(message = "해시태그를 입력해주세요.")
     private String hashTag;
 
     @ApiModelProperty(value = "텍스트", required = true, example = "가나다라마바사")
+    @NotBlank(message = "보물의 내용을 입력해주세요.")
     private String text;
 
     @ApiModelProperty(value = "퀘스트 추가 여부", required = true, example = "true")

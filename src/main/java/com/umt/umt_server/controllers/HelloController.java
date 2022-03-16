@@ -22,10 +22,4 @@ public class HelloController {
     @GetMapping
     public String sayHello() { return "Hello world!"; }
 
-    @ApiOperation(value= "예외 처리 확인", notes= "예외 처리용 테스트입니다.")
-    @GetMapping("/test")
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public void test() {
-        throw new CustomException(ErrorCode.POST_NOT_FOUND);
-    }
 }

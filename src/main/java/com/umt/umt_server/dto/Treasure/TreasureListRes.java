@@ -15,11 +15,8 @@ public class TreasureListRes implements Comparable<TreasureListRes>{
     @ApiModelProperty(value = "보물 index", example = "1")
     private Long treasureId;
 
-    @ApiModelProperty(value = "좋아요 개수", example = "1")
-    private Long likeCnt;
-
-    @ApiModelProperty(value = "싫어요 개수", example = "1")
-    private Long dislikeCnt;
+    @ApiModelProperty(value = "거리", example = "2.0")
+    private double distance;
 
     @ApiModelProperty(value = "위도", example = "32.23")
     private double latitude;
@@ -27,11 +24,14 @@ public class TreasureListRes implements Comparable<TreasureListRes>{
     @ApiModelProperty(value = "경도", example = "38.75")
     private double longitude;
 
-    @ApiModelProperty(value = "거리", example = "2.0")
-    private double distance;
-
     @ApiModelProperty(value = "해시태그", example = "#가나다 #라바사")
     private String hashTag;
+
+    @ApiModelProperty(value = "좋아요 개수", example = "1")
+    private Long likeCnt;
+
+    @ApiModelProperty(value = "싫어요 개수", example = "1")
+    private Long dislikeCnt;
 
     @ApiModelProperty(value = "포인트", example = "50")
     private Integer point;
