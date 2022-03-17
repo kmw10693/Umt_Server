@@ -14,4 +14,8 @@ public interface TreasureRepository extends JpaRepository<Treasure, Long> {
     List<Treasure> getTreasures(@Param("longitude") double longitude, @Param("latitude") double latitude);
 
     List<Treasure> findByUser(User user);
+
+    @Query("select count(t.id) from Treasure t where t.user = :user")
+    Long findCountByUser(User user);
+
 }
