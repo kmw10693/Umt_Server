@@ -32,10 +32,10 @@ public class UserResultData {
     private Integer level;
 
     @ApiModelProperty(value = "내가 공유한 보물 갯수", example = "12")
-    private Integer treasureShare;
+    private Long treasureShare;
 
     @ApiModelProperty(value = "내가 본 보물 갯수", example = "5")
-    private Integer treasureSeen;
+    private Long treasureSeen;
 
     // TODO 뱃지 추가하기
 }
