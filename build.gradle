@@ -20,6 +20,13 @@ repositories {
 
 dependencies {
 
+	// Spring security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
+	// Redis
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
 	// Spring data Jpa
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 

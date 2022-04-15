@@ -1,4 +1,4 @@
-package com.umt.umt_server.dto;
+package com.umt.umt_server.dto.User;
 
 import com.github.dozermapper.core.Mapping;
 import io.swagger.annotations.ApiModel;
@@ -17,12 +17,12 @@ import javax.validation.constraints.NotBlank;
 @Builder
 @Getter
 @AllArgsConstructor
-@ApiModel("사용자 결과 정보")
-public class UserResultData {
+@ApiModel("사용자 가입 정보")
+public class UserRegistrationData {
 
-    @ApiModelProperty(value = "사용자 인덱스", example = "김민우")
-    private String id;
-
-    @ApiParam(value = "사용자 이름", example = "김민우")
+    @NotBlank(message = "사용자 이름을 입력하세요.")
+    @Mapping("name")
+    @ApiModelProperty(value = "사용자 이름", required = true, example = "김민우")
     private String name;
+
 }
