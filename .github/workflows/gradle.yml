@@ -47,4 +47,4 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: aws deploy create-deployment --application-name springboot-intro --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name springboot-intro --s3-location bucket=umtbucket,bundleType=zip,key=springboot-intro-build.zip --region ap-northeast-2
+        run: aws deploy create-deployment --application-name umt-code-deploy --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name umt-server --s3-location bucket=umtbucket,bundleType=zip,key=springboot-intro-build.zip --region ap-northeast-2
