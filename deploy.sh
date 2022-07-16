@@ -5,7 +5,7 @@ cd $REPOSITORY
 
 APP_NAME=umt_server-0.0.1-SNAPSHOT.jar
 JAR_NAME=$(ls $REPOSITORY/build/libs/ | grep '.jar' | tail -n 1)
-JAR_PATH=$REPOSITORY/build/libs/$JAR_NAME
+JAR_PATH=$REPOSITORY/build/libs/umt_server-0.0.1-SNAPSHOT.jar
 
 CURRENT_PID=$(pgrep -f $APP_NAME)
 
